@@ -1,7 +1,7 @@
 LED SUIT
 ========
 
-Here is the code I used to program my LED suit at Burning Man 2014. It's designed for use with an Arduino UNO, running (FastLED)[https://github.com/FastLED/FastLED] version 2.1 on ws2812b strips.
+Here is the code I used to program my LED suit at Burning Man 2014. It's designed for use with an Arduino UNO, running [FastLED](https://github.com/FastLED/FastLED) version 2.1 on ws2812b strips.
 
 The Suit
 --------
@@ -13,6 +13,12 @@ The Jacket had 4 sections of LEDs that was split in 2 halves and generally made 
 The pants had 2 strips of LEDs that madde 4 horizontal rings on each leg. Each ring had 30 LEDs, totalling 240 LEDs.
 
 Each controller had animations that ran on a timer, but could also be manually switched using a push button. 
+
+Here's some videos of the suit in action:
+
+* [Slow Motion](http://videos-c-7.ak.instagram.com/hphotos-ak-xaf1/10622491_271188629734287_1681579773_n.mp4)
+* [Slow sparse animation](http://videos-f-18.ak.instagram.com/hphotos-ak-xaf1/10627084_1468371203418038_1837724756_n.mp4)
+* [Initial version of Rainbow Seizure/full light view of suit](http://videos-e-3.ak.instagram.com/hphotos-ak-xaf1/10613671_539303312836723_948993920_n.mp4)
 
 The Code
 --------
@@ -30,4 +36,4 @@ The suit fared fairly well at the burn. I generally wore the suit all night ~4-6
 
 The controller and batteries were held in elastic pockets I sewed into the inside of the jacket and pants.
 
-There exists an error with the changing of animations based on time, and I stronly believe it has to do with an integer overflow, but I didn't figure it out in time for the burn, and mostly managed my animations manually with my push button.
+There exists an error with the changing of animations based on time, and I strongly believe it has to do with an integer overflow, but I didn't figure it out in time for the burn, and mostly managed my animations manually with my push button.
