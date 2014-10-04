@@ -23,11 +23,11 @@ Here's some videos of the suit in action:
 The Code
 --------
 
-The code was designed so that the same set of animations can be compiled for both the jacket and pants controllers, so that they can have matching animations. This switch is done at the top of the `includes.h` file so that the arduino substitutes the appropriate variables.
+The code was designed so that the same set of animations can be compiled for both the jacket and pants controllers, so that they can have matching animations. This switch is done at the top of the `includes.h` file so that the arduino substitutes the appropriate variables. The main running file is `master_animations.ino`.
 
-Animations inherit from a general animation "Interface". Initially animations were only responsible for set up/breakdown, and drawing a single frame, but for sake of my own ease, I had them also handle their own delays.
+Animations inherit from a general animation "Interface" all contained in `animations.h`. Initially animations were only responsible for set up/breakdown, and drawing a single frame, but for sake of my own ease, I had them also handle their own delays.
 
-A number of compromises are found in the code that are a result of me doing last minute programming and debugging for the burn. Maybe some day i'll come back with fixes and more animations if I decide to wear the suit to a local party.
+A number of compromises are found in the code that are a result of me doing last minute programming and debugging for the burn. Maybe some day I'll come back with fixes and more animations if I decide to wear the suit to a local party.
 
 Other Notes
 -----------
