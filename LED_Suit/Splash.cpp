@@ -4,7 +4,7 @@ Splash::Splash () {
   reset();
 }
 
-void Splash::draw(CRGB leds[NUM_STRIP][STRIP_LEN], unsigned int step) {
+void Splash::draw(CRGB leds[NUM_STRIP][STRIP_LEN], uint32_t step) {
   reset_check(leds);
   for (int i=0; i<NUM_SPLASH;i++) {
     // Activate a splatter  1/SPLASH_CHANCE probability

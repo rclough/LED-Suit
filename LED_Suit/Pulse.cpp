@@ -4,7 +4,7 @@ Pulse::Pulse () {
   reset();
 }
 
-void Pulse::draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step) {
+void Pulse::draw(CRGB leds[NUM_STRIP][STRIP_LEN], uint32_t step) {
   for (int i=0;i<NUM_STRIP;i++) {
     for (int j=0; j<STRIP_LEN;j++) {
       int shifter = (i*STRIP_LEN)+j;

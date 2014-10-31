@@ -4,7 +4,7 @@ RainbowSeizure::RainbowSeizure () {
   reset();
 }
 
-void RainbowSeizure::draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step) {
+void RainbowSeizure::draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step) {
   int shift = (step/4) % STRIP_LEN;
   int flash_rate = FPS/15;
   if (step%(flash_rate) < flash_rate/2) {

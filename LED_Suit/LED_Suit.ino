@@ -5,8 +5,10 @@
 CRGB leds[NUM_STRIP][STRIP_LEN];
 
 // Animations
-Animation* animation[7] =
+Animation* animation[NUM_ANIMATIONS] =
 {
+  new Randomizer(),
+  new RainbowTails(),
   new RainbowWaves(),
   new Pulse(),
   new Sparkle(),
@@ -17,14 +19,18 @@ Animation* animation[7] =
 };
 
 // Other initializations
-int buttonState;
+uint8_t buttonState;
 boolean held;
-unsigned long last_p;
-unsigned int step;
-int current_animation;
-unsigned long last_change;
+uint32_t last_p;
+uint32_t step;
+uint8_t current_animation;
+uint32_t last_change;
 
 void setup() {
+  #if DEBUG
+  Serial.begin(9600);
+  #endif
+
   // Used to give a master "step" to animations
   step = 0;
   
@@ -36,13 +42,13 @@ void setup() {
 
   // Set up LEDs
   #if V == PANTS
-  FastLED.addLeds<WS2812B,R_PANT_PIN,GRB>(leds[R_PANT_STRIP],NUM_PANT).setCorrection( CORRECTION );
-  FastLED.addLeds<WS2812B,L_PANT_PIN,GRB>(leds[L_PANT_STRIP],NUM_PANT).setCorrection( CORRECTION );
+  FastLED.addLeds<WS2812B,R_PANT_PIN,GRB>(leds[R_PANT_STRIP],NUM_PANT);
+  FastLED.addLeds<WS2812B,L_PANT_PIN,GRB>(leds[L_PANT_STRIP],NUM_PANT);
   #elif V == JACKET
-  FastLED.addLeds<WS2812B,R_CHEST_PIN,GRB>(leds[R_CHEST_STRIP],NUM_CHEST).setCorrection( CORRECTION );
-  FastLED.addLeds<WS2812B,L_CHEST_PIN,GRB>(leds[L_CHEST_STRIP],NUM_CHEST).setCorrection( CORRECTION );
-  FastLED.addLeds<WS2812B,R_ARM_PIN,GRB>(leds[R_ARM_STRIP],NUM_ARM).setCorrection( CORRECTION );
-  FastLED.addLeds<WS2812B,L_ARM_PIN,GRB>(leds[L_ARM_STRIP],NUM_ARM).setCorrection( CORRECTION );
+  FastLED.addLeds<WS2812B,R_CHEST_PIN,GRB>(leds[R_CHEST_STRIP],NUM_CHEST);
+  FastLED.addLeds<WS2812B,L_CHEST_PIN,GRB>(leds[L_CHEST_STRIP],NUM_CHEST);
+  FastLED.addLeds<WS2812B,R_ARM_PIN,GRB>(leds[R_ARM_STRIP],NUM_ARM);
+  FastLED.addLeds<WS2812B,L_ARM_PIN,GRB>(leds[L_ARM_STRIP],NUM_ARM);
   #endif
   
   // Set up animations
@@ -51,7 +57,7 @@ void setup() {
   last_change = millis();
 }
 
-int seconds = 0;
+uint16_t seconds = 0;
 void loop() {
   if (millis()-last_change > 1000) {
     seconds++;
@@ -72,7 +78,7 @@ void loop() {
  */
 boolean change_animation() {
   buttonState = digitalRead(B_PIN);
-  unsigned long elapsed = millis()-last_p;
+  uint32_t elapsed = millis()-last_p;
 
   if (elapsed > DEBOUNCE) {
     // Check for button release

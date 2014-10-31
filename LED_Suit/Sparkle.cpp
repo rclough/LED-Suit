@@ -4,7 +4,7 @@ Sparkle::Sparkle () {
   reset();
 }
 
-void Sparkle::draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step) {
+void Sparkle::draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step) {
   for (int i=0;i<NUM_STRIP;i++) {
     for (int j=0; j<STRIP_LEN;j++) {
       leds[i][j] -= CRGB(10,10,10);

@@ -10,7 +10,7 @@ SparkleOsc::SparkleOsc(int fps) {
   reset();
 }
 
-void SparkleOsc::draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step) {
+void SparkleOsc::draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step) {
   int tick = step*3;
   for (int i=0;i<LEVEL;i++) {
     int pixel = (OSC_SIZE*i)+map(triwave8(tick),0,255,0,30);

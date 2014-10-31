@@ -7,16 +7,19 @@
 class Animation
 {
   public:
-    virtual void draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step) = 0;
+    virtual void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step) = 0;
     virtual void reset() = 0;
   private:
+  protected:
+    CRGBPalette16 currentPalette;
+    TBlendType    currentBlending;
 };
 
 class RainbowSeizure : public Animation
 {
   public:
     RainbowSeizure();
-    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step);
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
     void reset();
    private:
 };
@@ -25,7 +28,7 @@ class Splash : public Animation
 {
   public:
     Splash();
-    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step);
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
     void reset();
    private:
     boolean active[NUM_SPLASH];
@@ -42,7 +45,7 @@ class SparkleOsc : public Animation
   public:
     SparkleOsc();
     SparkleOsc(int brightness);
-    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step);
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
     void reset();
    private:
     int del;
@@ -52,7 +55,7 @@ class Sparkle : public Animation
 {
   public:
     Sparkle();
-    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step);
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
     void reset();
    private:
 };
@@ -61,7 +64,7 @@ class Pulse : public Animation
 {
   public:
     Pulse();
-    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step);
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
     void reset();
    private:
 };
@@ -70,9 +73,38 @@ class RainbowWaves : public Animation
 {
   public:
     RainbowWaves();
-    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],unsigned int step);
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
     void reset();
    private:
+};
+
+class RainbowTails : public Animation
+{
+  public:
+    RainbowTails();
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
+    void reset();
+   private:
+    void drawTail(CRGB leds[STRIP_LEN],int16_t start_led, uint8_t tail_level, uint8_t color);
+    void ChangePalettePeriodically();
+    void SetupPurpleAndGreenPalette();
+    void SetupCoolPalette();
+};
+
+class Randomizer : public Animation
+{
+  public:
+    Randomizer();
+    void draw(CRGB leds[NUM_STRIP][STRIP_LEN],uint32_t step);
+    void reset();
+   private:
+    void ChangePalettePeriodically();
+    void SetupPurpleAndGreenPalette();
+    void SetupCoolPalette();
+    uint8_t shift;
+    boolean direction;
+    uint8_t fps;
+    boolean blink;
 };
 
 #endif /* ANIMATION_H */
